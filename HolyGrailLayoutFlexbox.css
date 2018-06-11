@@ -1,0 +1,58 @@
+   @import "compass/css3";
+
+   .flex-container {
+     padding: 0;
+     margin: 0;
+     list-style: none;
+     
+     display: -webkit-box;
+     display: -moz-box;
+     display: -ms-flexbox;
+     display: -webkit-flex;
+     display: flex;
+     
+     flex-flow: column wrap;
+     align-items: stretch;
+   }
+   
+   .flex-item {
+     background: tomato;
+     height: 150px;  
+     line-height: 150px; 
+     color: white;
+     font-weight: bold;
+     font-size: 3em;
+     text-align: center;
+   }
+
+   #horizontal-list{
+    padding: 0;
+    margin: 0; 
+    list-style: none;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch;
+   }
+
+   #inlineitemleft {
+       background: blueviolet;
+       flex: 1 auto
+    }
+
+   #inlineitemcenter{
+       background: gray;
+       flex: 2 auto
+   }
+
+   #inlineitemright{
+       background: blue;
+       flex: 1 auto
+   }
+   
