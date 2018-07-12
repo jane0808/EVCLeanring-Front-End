@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React Ajax</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+    <script src="build/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var App = React.createClass({        
+        getInitialState: function() {
+            return {
+            users: []
+            }
+        },
+        
+        componentDidMount: function() {
+           var th = this;
+            this.serverRequest = 
+            axios.get(this.props.source)
+                .then(function(result) {    
+                th.setState({
+                    users: result.data.results
+                });
+            })
+        },
+        
+        componentWillUnmount: function() {
+            this.serverRequest.abort();
+        },
+        
+        render: function() {
+            return (
+            <div>
+                <h3>Users!</h3>
+                {this.state.users.map(function(user) {
+                return (
+                    <div key={user.cell}>
+                    <div>{user.name.first + ' ' +user.name.last}</div>
+                    </div>
+                );
+                })}
+            </div>
+            )
+        }
+        });
+
+        ReactDOM.render(
+            <App source="https://randomuser.me/api?results=10" />,
+            document.getElementById('example')
+        );
+    </script>   
+</body>
+</html>

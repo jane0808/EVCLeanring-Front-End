@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React Demo 1</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+     function NameList(props) { // like define directive in Angular. Can only return one top level tag
+        const names = props.names;
+        const listItems = names.map((name) =>
+            <div key={name.toString()}>
+              <span>Hello, {name}!</span>
+            </div>
+        );
+        return (
+            <div>{listItems}</div>
+        );
+        }
+
+        const names = ['Alice', 'Emily', 'Kate'];
+        ReactDOM.render(
+        <NameList names={names} />,
+        document.getElementById('example')
+    );
+    </script>
+    
+</body>
+</html>
