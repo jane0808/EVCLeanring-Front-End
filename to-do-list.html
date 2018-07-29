@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Page Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    </head>
+<body ng-app="myTodoList" >
+    <div ng-controller="toDoListCtrl">
+        <div class="col-sm-6">
+            <h3 class="text-center">Todo list</h3>
+            <form class="form-horizontal" name="myToListFrm" novalidate>
+                <div class="form-group"
+                     ng-class="{'has-error': myToListFrm.TaskName.$invalid && 
+                                             myToListFrm.TaskName.$dirty}">
+                  <label for="TaskName" class="col-sm-2 control-label">Task Name: </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="TaskName" name="TaskName" placeholder="Add new task"
+                           ng-model="newTask" required>
+                      <span class="help-block has-error">
+                        <span ng-show="myToListFrm.TaskName.$error.required" class="text-danger">
+                                Task name is required.
+                        </span>
+                  </span>      
+                  </div>
+                 
+                </div>
+                <div class="form-group">
+                  <label for="TaskLevel" class="col-sm-2 control-label">Password</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" id="TaskLevel" ng-model="newTaskPriority">
+                        <option ng-repeat="level in priorities" value="{{level}}">{{level}}</option>
+                    </select>
+                  </div>
+                </div>                
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" ng-click="addTask(myToListFrm.$valid, newTask, newTaskPriority)"
+                            ng-disabled="myToListFrm.$invalid">Add</button>
+                  </div>
+                </div>
+            </form>
+            <div class="text-center">
+                <div ng-repeat="task in lists"><strong>{{task.name}} -- {{task.priority}}</strong></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var app = angular.module('myTodoList', []); 
+        app.controller('toDoListCtrl', function($scope){
+            $scope.lists = [
+            {
+                name: "Watch movie",
+                priority: "normal"
+            },
+            {
+                name: "Buy vegetables",
+                priority: "high"
+            },
+            {
+                name: "Wash cloth",
+                priority: "low"
+            }
+        ];
+
+            $scope.priorities = ['High', 'Medium', 'Low'];
+            
+
+        if(!$scope.taskName){
+            $scope.newTaskPriority = 'High';
+        }
+
+        $scope.addTask = function(isValid, taskName, taskPriority){
+            if(isValid){
+                $scope.lists.push({
+                    name: taskName,
+                    priority: taskPriority
+                })
+            }
+        }
+      
+        })
+    </script>
+</body>
+</html>
