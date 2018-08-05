@@ -81,6 +81,13 @@
 
         });
 
+        $scope.getNextPeopleList = function() {
+            peopleResource.getPeopleList().then(function(response){
+                vm.people = response.data.results;
+
+            })
+        }
+
         // function to get the person detail ----------------------------------------------
         $scope.getPersonDetail = function(Person, Index) {
             if(Person !== undefined && Person !== null ) {
