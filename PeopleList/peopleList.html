@@ -1,0 +1,11 @@
+
+
+<div class="box-menu">
+    <ul class="list-group">
+        <li id={{$index}} class="list-group-item" ng-repeat="p in vm.people | filter:$parent.searchQuery"
+            ng-click="getPersonDetail(p, $index)"
+            ng-class="{'person-selected':$index == selectedPerson}">
+            {{p.name.first}} {{p.name.last}}<span class="glyphicon glyphicon-triangle-right pull-right" aria-hidden="true"></span>
+        </li>
+    </ul>
+</div>

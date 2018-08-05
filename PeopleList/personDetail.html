@@ -1,0 +1,55 @@
+
+<div class="row">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="description-container">
+                <h2>{{person.name.first}} {{person.name.last}}</h2>
+            </div>
+        </div>
+
+    </div>
+    <div class="row descPeople">
+        <div class="col-md-3 col-sm-3 col-xs-3">
+            <div class="img-box"><img src="{{person.picture.thumbnail}}" class="img-rounded" width="100%" border="0"></div>
+        </div>
+
+        <div class="col-md-5">
+
+            <div>
+                <button type="button" class="btn btn-dark" ng-click="addToFavorite()">Add To Favorite!</button>
+               <!-- <button type="button" class="btn btn-dark" ng-click="showFavorite()">Show Your Favorite!</button>-->
+                <div class="clear"></div>
+               <!-- <div class="rating"><span ng-repeat="i in getTableRow(fullHearts) track by $index" class="glyphicon glyphicon-heart"></span><span ng-repeat="i in getTableRow(emptyHearts) track by $index" class="glyphicon glyphicon-heart-empty"></span></div>-->
+            </div>
+            <div class="description-container">
+                <p>City: {{person.location.city}}</p>
+                <p>Email: {{person.email}}</p>
+            </div>
+        </div>
+        <div class="col-md-4" ng-show="favoritePeople.length>0">
+            Your Favorite
+            <ul>
+                <li ng-repeat="fp in favoritePeople">{{fp.name.first}} {{fp.name.last}}&nbsp&nbsp<a style="cursor: pointer" ng-click="removeFromFavorite(fp,favoritePeople)">x</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <br><br>
+  <!--  <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+            <tr><th>Likes</th><th>Dislikes</th></tr>
+            <tr ng-repeat="i in getTableRow(totalRows) track by $index">
+                <td>{{person.Likes[$index]}}</td>
+                <td>{{person.Dislikes[$index]}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-9" ng-if="messages.length > 0">
+        <h3>Messages</h3>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="m in messages">{{m}}</li>
+        </ul>
+    </div>-->
+</div>
+<br><br>
